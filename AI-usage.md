@@ -10,7 +10,7 @@
 - **Implementation help** — PostgreSQL queries, service workflow decomposition, unit test structure
 - **Design alignment** — schema, pessimistic locking, and idempotency per `implementation-details.md`
 - **Debugging** — Docker port 5432/5433 conflict, `golang-migrate`, Go `GOTOOLCHAIN` on Windows
-- **Documentation** — `run.md`, README, PR description
+- **Documentation** — README (local run guide)
 
 I review all AI-generated code and can explain it in an interview.
 
@@ -37,11 +37,6 @@ I review all AI-generated code and can explain it in an interview.
 
 9. > how can i test end to end?
 
-10. > `docker compose exec postgres psql ...` → `no configuration file provided: not found`
-
-11. > add all prompts given to you in @AI-usage.md and add run.md file for how to run the code locally for someone totally new to it
-
-12. > can you fill it up for me (PR description template: Summary, AI disclosure, Schema, Idempotency, Concurrency, How to Run/Test, Tradeoffs, Checklist)
 
 ---
 
