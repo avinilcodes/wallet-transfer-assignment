@@ -4,59 +4,47 @@
 
 **Cursor** (AI-assisted IDE / agent)
 
-## How the tool was used
+## How I generally use the tool
 
-- Database schema design and SQL migrations from `implementation-details.md`
-- Project scaffolding (layered architecture: handler, service, repository, domain)
-- PostgreSQL repository SQL implementations
-- Service-layer refactor (`CreateTransfer` helpers, idempotency, workflow)
-- Unit tests with an in-memory store (per `ASSIGNMENT.md` testing requirements)
-- Troubleshooting: Docker port conflicts (5432 vs 5433), `golang-migrate`, Go toolchain (`GOTOOLCHAIN=local`)
-- Documentation: `README.md` guidance, end-to-end testing steps, `run.md`
+- **Scaffolding** — project layout, migrations, repository interfaces, HTTP routing
+- **Implementation help** — PostgreSQL queries, service workflow decomposition, unit test structure
+- **Design alignment** — schema, pessimistic locking, and idempotency per `implementation-details.md`
+- **Debugging** — Docker port 5432/5433 conflict, `golang-migrate`, Go `GOTOOLCHAIN` on Windows
+- **Documentation** — `run.md`, README, PR description
 
-Business logic and design decisions were reviewed and iterated through prompts; the candidate should be able to explain the PR and implementation in an interview.
+I review all AI-generated code and can explain it in an interview.
 
 ---
 
-## Prompts used (chronological)
+## Prompts used (full list)
 
-1. **Postgres + migration**
-   > add postgres database configution in this repo, and create a dababase migration from schema mentioned in @implementation-details.md
+1. > add postgres database configution in this repo, and create a dababase migration from schema mentioned in @implementation-details.md
 
-2. **README**
-   > write me a Readme file for this project
+2. > write me a Readme file for this project
 
-3. **Project structure (no business logic)**
-   > start implementing using @implementation-details.md and @ASSIGNMENT.md , only implement structure, keep business logic implementation for me, i would implement that, thanks
+3. > start implementing using @implementation-details.md and @ASSIGNMENT.md , only implement structure, keep business logic implementation for me, i would implement that, thanks
 
-4. **Repository `Create` guidance**
-   > how would you implement this?
-   > (with `TransferRepository.Create` stub in `internal/repository/postgres/transfer.go`)
+4. > how would you implement this?  
+   > (referring to `TransferRepository.Create`)
 
-5. **Repository SQL**
-   > write all required queries in repository/postgres
+5. > write all required queries in repository/postgres
 
-6. **Service helpers**
-   > can add functions for inside working of createtransfer in @internal/service/transfer.go
+6. > can add functions for inside working of createtransfer in @internal/service/transfer.go
 
-7. **Unit tests**
-   > can write unit tests coverage mentioned in @ASSIGNMENT.md file, thanks
+7. > can write unit tests coverage mentioned in @ASSIGNMENT.md file, thanks
 
-8. **Go toolchain / `make test`**
-   > `make test` → `go: download go1.24 ... toolchain not available` (and follow-ups for go1.22 / go1.23)
+8. > `make test` — Go toolchain download failures (`go1.24` / `go1.22` / `go1.23` not available on Windows)
 
-9. **End-to-end testing**
-   > how can i test end to end?
+9. > how can i test end to end?
 
-10. **Docker verify query**
-    > `docker compose exec postgres psql ...` → `no configuration file provided: not found`
+10. > `docker compose exec postgres psql ...` → `no configuration file provided: not found`
 
-11. **This file + run guide**
-    > add all prompts given to you in @AI-usage.md and add run.md file for how to run the code locally for someone totally new to it
+11. > add all prompts given to you in @AI-usage.md and add run.md file for how to run the code locally for someone totally new to it
+
+12. > can you fill it up for me (PR description template: Summary, AI disclosure, Schema, Idempotency, Concurrency, How to Run/Test, Tradeoffs, Checklist)
 
 ---
 
-## Notes for reviewers
+## Transcript
 
-- Full agent session transcripts can be exported from Cursor if required by the assignment.
-- Prompts above are the substantive user requests; brief system/task notifications are omitted.
+A full Cursor agent session export can be shared separately if required. This file lists all user prompts; the agent’s step-by-step tool output is available in the Cursor chat history for this project.
